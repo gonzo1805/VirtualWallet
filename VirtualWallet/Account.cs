@@ -15,26 +15,30 @@ namespace VirtualWallet
         private List<Fund> historicalFunds; 
         private string name;
         private decimal amount;
+        private string description; 
 
         public string Name { get => name; set => name = value; }
         public decimal Amount { get => amount; set => amount = value; }
         internal List<Fund> HistoricalFunds { get => historicalFunds; set => historicalFunds = value; }
         internal Dictionary<string, Fund> Funds { get => funds; set => funds = value; }
+        public string Description { get => description; set => description = value; }
 
-        public Account(string name, Dictionary<string, Fund> funds, List<Fund> historicalFunds, decimal amount = 0) 
+        public Account(string name, Dictionary<string, Fund> funds, List<Fund> historicalFunds, string description = "") 
         {
-            Name = name;
-            Amount = amount;
+            Name = name;           
             Funds = funds;
             HistoricalFunds = historicalFunds;
+            Description = description;
+            Amount = 0;
         }
 
-        public Account(string name, decimal amount = 0)
+        public Account(string name, string description = "")
         {
             Name = name;
-            Amount = amount;
+            Amount = 0;
             Funds = new Dictionary<string, Fund>();
             HistoricalFunds = new List<Fund>();
+            Description = description;
         }
 
         public bool CloseFund(Fund fund)
@@ -61,6 +65,11 @@ namespace VirtualWallet
                 Console.WriteLine("A Fund with Key = {1} already exists.", fund.Name);
                 return false;
             }
+        }
+
+        public void ClearHistoricalFunds()
+        {
+            HistoricalFunds = new List<Fund>();
         }
     }
 
