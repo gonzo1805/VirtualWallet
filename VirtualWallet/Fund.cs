@@ -13,7 +13,8 @@ namespace VirtualWallet
         private decimal amount;
         private string description; 
         private List<Transaction> transactions;
-        private decimal goal; 
+        private decimal goal;
+        private int currency;
 
         public string Name { get => name; set => name = value; }
         public decimal Amount { get => amount; set => amount = value; }
@@ -34,22 +35,25 @@ namespace VirtualWallet
 
         public string Description { get => description; set => description = value; }
         public decimal Goal { get => goal; set => goal = value; }
+        public int Currency { get => currency; set => currency = value; }
 
-        public Fund(string name, decimal amount, string description = "", decimal goal = 0)
+        public Fund(string name, decimal amount, int currency, string description = "", decimal goal = 0)
         {
             Name = name;
             Amount = amount;
             Transactions = new List<Transaction>();
             Description = description;
+            Currency = currency;
             Goal = goal; 
         }
 
-        public Fund(string name, decimal amount, List<Transaction> transactions, string description = "", decimal goal = 0) 
+        public Fund(string name, decimal amount, List<Transaction> transactions, int currency, string description = "", decimal goal = 0) 
         {
             Name = name;
             Amount = amount;
             Transactions = transactions;
             Description = description;
+            Currency = currency;
             Goal = goal;
         }
 
